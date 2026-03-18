@@ -1,0 +1,349 @@
+
+<style>
+  .card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:1rem}
+  .stitle{font-size:13px;font-weight:500;color:var(--color-text-secondary);margin:0 0 12px}
+  .fg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+  .f{display:flex;flex-direction:column;gap:4px}
+  .f label{font-size:12px;color:var(--color-text-secondary)}
+  .f input,.f select{width:100%;box-sizing:border-box}
+  .hint{font-size:11px;color:var(--color-text-tertiary);margin:2px 0 0}
+  .plan-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+  .plan-btn{padding:10px 6px;font-size:13px;font-weight:500;border:2px solid var(--color-border-secondary);border-radius:var(--border-radius-md);cursor:pointer;background:transparent;color:var(--color-text-secondary);text-align:center}
+  .plan-btn.active-30{border-color:#185FA5;background:var(--color-background-info);color:var(--color-text-info)}
+  .plan-btn.active-50{border-color:#0F6E56;background:var(--color-background-success);color:var(--color-text-success)}
+  .plan-btn.active-100{border-color:#993C1D;background:#FAECE7;color:#993C1D}
+  .plan-btn.active-custom{border-color:#533AB7;background:#EEEDFE;color:#533AB7}
+  .plan-desc{font-size:11px;font-weight:400;margin-top:3px;opacity:0.85}
+  .m4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1rem}
+  .m{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:11px 13px}
+  .m.g{background:var(--color-background-success)}
+  .m.g .ml,.m.g .ms,.m.g .mv{color:var(--color-text-success)}
+  .ml{font-size:11px;color:var(--color-text-secondary);margin:0 0 3px}
+  .mv{font-size:17px;font-weight:500;color:var(--color-text-primary);margin:0}
+  .ms{font-size:11px;color:var(--color-text-tertiary);margin:2px 0 0}
+  .divider{border:none;border-top:0.5px solid var(--color-border-tertiary);margin:12px 0}
+  .fbox{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 14px;font-size:12px;color:var(--color-text-secondary);line-height:1.8;margin-bottom:10px}
+  .fbox strong{color:var(--color-text-primary);font-weight:500}
+  .warn{background:var(--color-background-warning);border-radius:var(--border-radius-md);padding:8px 12px;font-size:12px;color:var(--color-text-warning);margin-bottom:10px;display:none}
+  .tab-bar{display:flex;gap:6px}
+  .tab{padding:5px 12px;font-size:12px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);cursor:pointer;background:transparent;color:var(--color-text-secondary)}
+  .tab.active{background:var(--color-background-info);color:var(--color-text-info);border-color:transparent}
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  th{text-align:right;padding:7px 4px;color:var(--color-text-secondary);font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary);white-space:nowrap}
+  th:first-child,th:nth-child(2){text-align:left}
+  td{text-align:right;padding:6px 4px;color:var(--color-text-primary);border-bottom:0.5px solid var(--color-border-tertiary);white-space:nowrap}
+  td:first-child,td:nth-child(2){text-align:left}
+  #tableWrap{max-height:400px;overflow-y:auto}
+  select{padding:6px 8px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:var(--color-background-primary);color:var(--color-text-primary);font-size:13px}
+  .compare-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1rem}
+  .compare-card{border-radius:var(--border-radius-md);padding:12px;border:0.5px solid var(--color-border-tertiary)}
+  .compare-card.active{border-width:2px}
+  .compare-card.c30{border-color:#185FA5}.compare-card.active.c30{background:#E6F1FB}
+  .compare-card.c50{border-color:#0F6E56}.compare-card.active.c50{background:#E1F5EE}
+  .compare-card.c100{border-color:#993C1D}.compare-card.active.c100{background:#FAECE7}
+  .cc-label{font-size:11px;font-weight:500;margin:0 0 6px}
+  .cc-label.c30{color:#185FA5}.cc-label.c50{color:#0F6E56}.cc-label.c100{color:#993C1D}
+  .cc-val{font-size:15px;font-weight:500;color:var(--color-text-primary);margin:2px 0}
+  .cc-sub{font-size:11px;color:var(--color-text-secondary);margin:0}
+</style>
+
+<div style="padding:1rem 0">
+
+  <div style="margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:0.5px solid var(--color-border-tertiary);">
+    <p style="font-size:11px;font-weight:500;color:var(--color-text-tertiary);margin:0 0 6px;letter-spacing:0.04em;">STANDARD CHARTERED BANK</p>
+    <h1 style="font-size:22px;font-weight:500;color:var(--color-text-primary);margin:0 0 6px;line-height:1.3;">渣打銀行 MortgageOne<br>靈活房貸提前還款估算器</h1>
+    <p style="font-size:13px;color:var(--color-text-secondary);margin:0;">試算提前還款後的每月還款金額與 MOA 存款折抵效益</p>
+  </div>
+
+<div class="card">
+  <p class="stitle">MortgageOne 方案選擇</p>
+  <div class="plan-grid">
+    <button class="plan-btn active-30" id="btn30" onclick="selectPlan(30)">折抵 30%<div class="plan-desc">渣打標準方案</div></button>
+    <button class="plan-btn" id="btn50" onclick="selectPlan(50)">折抵 50%<div class="plan-desc">進階方案</div></button>
+    <button class="plan-btn" id="btn100" onclick="selectPlan(100)">折抵 100%<div class="plan-desc">全額折抵</div></button>
+    <button class="plan-btn" id="btnCustom" onclick="selectPlan('custom')">自訂 %<div class="plan-desc" id="customPct">輸入比例</div></button>
+  </div>
+  <div id="customInput" style="display:none;margin-bottom:12px">
+    <div class="f" style="max-width:200px">
+      <label>自訂折抵比例 (%)</label>
+      <input type="number" id="customPctInput" value="30" min="1" max="100" step="1" oninput="document.getElementById('customPct').textContent=this.value+'%'">
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <p class="stitle">貸款基本設定</p>
+  <div class="fg">
+    <div class="f"><label>目前未償還餘額 (元)</label><input type="number" id="balance" value="10000000"></div>
+    <div class="f"><label>提前還款金額 (元)</label><input type="number" id="prepay" value="1000000"></div>
+    <div class="f"><label>年利率 (%)</label><input type="number" id="rate" value="2.40" step="0.01"></div>
+    <div class="f"><label>剩餘期數</label><input type="number" id="periods" value="240"></div>
+    <div class="f"><label>下次繳款日</label><input type="date" id="nextDate" value="2026-04-01"></div>
+    <div class="f">
+      <label>繳款週期天數模式</label>
+      <select id="cycleMode">
+        <option value="auto">自動（依實際月份天數）</option>
+        <option value="30">固定 30 天</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <p class="stitle">MOA 帳戶存款設定</p>
+  <div class="fbox">
+    <strong>公式：</strong>
+    可計息存款上限 = 貸款餘額 × 折抵比例（<span id="fboxPct">30%</span>）<br>
+    每日 MOA = min(存款餘額, 上限) × 房貸利率 ÷ 365<br>
+    每月 MOA = 每日 MOA × 當月週期天數<br>
+    <strong>注意：</strong>當月 MOA &gt; 20,000 元需扣 2.11% 二代健保補充保費
+  </div>
+  <div class="fg">
+    <div class="f">
+      <label>存款帳戶模式</label>
+      <select id="depMode" onchange="toggleDep()">
+        <option value="fixed">固定存款金額</option>
+        <option value="auto">每月本金增加自動累積</option>
+      </select>
+    </div>
+    <div class="f" id="fd">
+      <label>存款餘額 (元)</label>
+      <input type="number" id="fixedDep" value="100000">
+    </div>
+    <div class="f" id="ad" style="display:none">
+      <label>初始存款餘額 (元)</label>
+      <input type="number" id="initDep" value="477960">
+      <span class="hint">每月還款本金部分自動累加</span>
+    </div>
+  </div>
+  <button onclick="calculate()" style="width:100%;padding:10px;font-size:14px;font-weight:500;margin-top:4px">重新計算</button>
+</div>
+
+<div id="warnBox" class="warn"></div>
+
+<div id="sumSec" style="display:none">
+  <div class="m4">
+    <div class="m"><p class="ml">提前還款後貸款餘額</p><p class="mv" id="s1">-</p><p class="ms">元</p></div>
+    <div class="m"><p class="ml">每月還款額（本利和）</p><p class="mv" id="s2">-</p><p class="ms">元/月</p></div>
+    <div class="m g"><p class="ml">首月 MOA 折抵</p><p class="mv" id="s3">-</p><p class="ms">元（存款利息抵扣）</p></div>
+    <div class="m g"><p class="ml">首月實際淨支出</p><p class="mv" id="s4">-</p><p class="ms">= 還款 − MOA ± 健保費</p></div>
+  </div>
+  <div class="m4">
+    <div class="m"><p class="ml">可計息存款上限（首月）</p><p class="mv" id="s5">-</p><p class="ms" id="s5s">= 貸款餘額 × 30%</p></div>
+    <div class="m"><p class="ml">首月存款是否超限</p><p class="mv" id="s6">-</p><p class="ms" id="s6s">-</p></div>
+    <div class="m g"><p class="ml">vs 原還款 總利息節省</p><p class="mv" id="s7">-</p><p class="ms">元（剩餘期間）</p></div>
+    <div class="m g"><p class="ml">MOA 累積折抵總額</p><p class="mv" id="s8">-</p><p class="ms">元（剩餘期間）</p></div>
+  </div>
+
+  <div class="card" id="compareSec">
+    <p class="stitle">三種方案比較（30% / 50% / 100%）</p>
+    <div class="compare-grid" id="compareGrid"></div>
+  </div>
+</div>
+
+<div class="card" id="chartSec" style="display:none">
+  <p class="stitle" id="chartTitle">每月還款拆解（本金 / 利息 / MOA折抵）</p>
+  <div style="display:flex;flex-wrap:wrap;gap:14px;margin-bottom:8px;font-size:12px;color:var(--color-text-secondary)">
+    <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#185FA5"></span>本金</span>
+    <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#D85A30"></span>利息</span>
+    <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#1D9E75"></span>MOA折抵（負值）</span>
+  </div>
+  <div style="position:relative;width:100%;height:260px"><canvas id="chart"></canvas></div>
+</div>
+
+<div class="card" id="tblSec" style="display:none">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+    <p class="stitle" style="margin:0" id="tableTitle">攤還明細表（含 MOA 折抵）— 折抵 30%</p>
+    <div class="tab-bar">
+      <button class="tab active" onclick="showRows(24,'ta')" id="ta">前24期</button>
+      <button class="tab" onclick="showRows(60,'tb')" id="tb">前60期</button>
+      <button class="tab" onclick="showRows(9999,'tc')" id="tc">全部</button>
+    </div>
+  </div>
+  <div id="tableWrap">
+    <table>
+      <thead>
+        <tr>
+          <th>期</th><th>繳款日</th>
+          <th>月還款</th><th>本金</th><th>利息</th>
+          <th>存款餘額</th><th>計息上限</th><th>天數</th>
+          <th>MOA折抵</th><th>健保費</th><th>淨支出</th><th>貸款餘額</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+let sched=[], chartInst=null, currentPlan=30;
+function fmt(n){return Math.round(n).toLocaleString('zh-TW')}
+
+function selectPlan(p){
+  currentPlan=p;
+  ['btn30','btn50','btn100','btnCustom'].forEach(id=>document.getElementById(id).className='plan-btn');
+  if(p===30) document.getElementById('btn30').className='plan-btn active-30';
+  else if(p===50) document.getElementById('btn50').className='plan-btn active-50';
+  else if(p===100) document.getElementById('btn100').className='plan-btn active-100';
+  else document.getElementById('btnCustom').className='plan-btn active-custom';
+  document.getElementById('customInput').style.display=(p==='custom')?'':'none';
+  document.getElementById('fboxPct').textContent=getPct()+'%';
+}
+
+function getPct(){
+  if(currentPlan==='custom') return parseFloat(document.getElementById('customPctInput').value)||30;
+  return currentPlan;
+}
+
+function toggleDep(){
+  const m=document.getElementById('depMode').value;
+  document.getElementById('fd').style.display=m==='fixed'?'':'none';
+  document.getElementById('ad').style.display=m==='auto'?'':'none';
+}
+
+function getDays(mode,date){
+  if(mode==='30') return 30;
+  const prev=new Date(date); prev.setMonth(prev.getMonth()-1);
+  return Math.round((date-prev)/86400000);
+}
+
+function buildSchedule(newBal0,rate,periods,nextDate,cycleMode,depMode,fixedDep,initDep,pct){
+  const mr=rate/12;
+  const newM=newBal0*mr*Math.pow(1+mr,periods)/(Math.pow(1+mr,periods)-1);
+  let rem=newBal0, autoRunning=initDep, result=[], totalMoa=0;
+  for(let i=0;i<periods;i++){
+    const d=new Date(nextDate); d.setMonth(d.getMonth()+i);
+    const dateStr=d.getFullYear()+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+String(d.getDate()).padStart(2,'0');
+    const days=getDays(cycleMode,d);
+    const dep=depMode==='fixed'?fixedDep:autoRunning;
+    const cap=rem*(pct/100);
+    const effDep=Math.min(dep,cap);
+    const moa=effDep*rate/365*days;
+    const nhiFee=moa>20000?moa*0.0211:0;
+    const interest=rem*mr;
+    const principal=newM-interest;
+    rem=Math.max(rem-principal,0);
+    if(depMode==='auto') autoRunning+=principal;
+    totalMoa+=moa;
+    result.push({period:i+1,date:dateStr,monthly:newM,principal,interest,dep,cap,days,moa,nhiFee,net:newM-moa+nhiFee,balance:rem});
+  }
+  return {schedule:result,totalMoa,monthly:newM};
+}
+
+function calculate(){
+  const bal0=parseFloat(document.getElementById('balance').value);
+  const prepay=parseFloat(document.getElementById('prepay').value);
+  const rate=parseFloat(document.getElementById('rate').value)/100;
+  const periods=parseInt(document.getElementById('periods').value);
+  const nextDateStr=document.getElementById('nextDate').value;
+  const cycleMode=document.getElementById('cycleMode').value;
+  const depMode=document.getElementById('depMode').value;
+  const fixedDep=parseFloat(document.getElementById('fixedDep').value)||0;
+  const initDep=parseFloat(document.getElementById('initDep').value)||0;
+  const pct=getPct();
+  const newBal0=bal0-prepay;
+  const mr=rate/12;
+  const oldM=bal0*mr*Math.pow(1+mr,periods)/(Math.pow(1+mr,periods)-1);
+  const totalOldInt=oldM*periods-bal0;
+  const newMBase=newBal0*mr*Math.pow(1+mr,periods)/(Math.pow(1+mr,periods)-1);
+  const totalNewInt=newMBase*periods-newBal0;
+  const totalSave=totalOldInt-totalNewInt;
+  const nextDate=new Date(nextDateStr);
+  const {schedule,totalMoa}=buildSchedule(newBal0,rate,periods,nextDate,cycleMode,depMode,fixedDep,initDep,pct);
+  sched=schedule;
+  const r0=sched[0];
+  document.getElementById('s1').textContent=fmt(newBal0);
+  document.getElementById('s2').textContent=fmt(r0.monthly);
+  document.getElementById('s3').textContent=fmt(r0.moa);
+  document.getElementById('s4').textContent=fmt(r0.net);
+  document.getElementById('s5').textContent=fmt(r0.cap);
+  document.getElementById('s5s').textContent='= 貸款餘額 × '+pct+'%';
+  const over=r0.dep>r0.cap;
+  document.getElementById('s6').textContent=over?'超過上限':'未超上限';
+  document.getElementById('s6').style.color=over?'var(--color-text-warning)':'var(--color-text-success)';
+  document.getElementById('s6s').textContent=over?('超出 '+fmt(r0.dep-r0.cap)+' 元不計息'):'全額存款均可計息';
+  document.getElementById('s7').textContent=fmt(totalSave);
+  document.getElementById('s8').textContent=fmt(totalMoa);
+  const warnMonths=sched.filter(r=>r.moa>20000).map(r=>r.period);
+  const wb=document.getElementById('warnBox');
+  if(warnMonths.length>0){
+    wb.style.display='block';
+    wb.textContent='注意：第 '+warnMonths.slice(0,5).join('、')+(warnMonths.length>5?'...等':'')+'期 MOA 折抵超過 20,000 元，需扣繳 2.11% 二代健保補充保費，已反映於淨支出中。';
+  } else { wb.style.display='none'; }
+  buildCompare(newBal0,rate,periods,nextDate,cycleMode,depMode,fixedDep,initDep,pct);
+  document.getElementById('sumSec').style.display='';
+  document.getElementById('chartSec').style.display='';
+  document.getElementById('tblSec').style.display='';
+  document.getElementById('chartTitle').textContent='每月還款拆解（本金 / 利息 / MOA折抵）— 折抵 '+pct+'%';
+  document.getElementById('tableTitle').textContent='攤還明細表（含 MOA 折抵）— 折抵 '+pct+'%';
+  drawChart();
+  showRows(24,'ta');
+}
+
+function buildCompare(newBal0,rate,periods,nextDate,cycleMode,depMode,fixedDep,initDep,activePct){
+  const plans=[{pct:30,label:'折抵 30%',cls:'c30'},{pct:50,label:'折抵 50%',cls:'c50'},{pct:100,label:'折抵 100%',cls:'c100'}];
+  document.getElementById('compareGrid').innerHTML=plans.map(p=>{
+    const {schedule,totalMoa}=buildSchedule(newBal0,rate,periods,nextDate,cycleMode,depMode,fixedDep,initDep,p.pct);
+    const r0=schedule[0];
+    const isActive=p.pct===activePct;
+    return `<div class="compare-card ${p.cls}${isActive?' active':''}">
+      <p class="cc-label ${p.cls}">${p.label}${isActive?' ✓':''}</p>
+      <p class="cc-val">${fmt(r0.moa)} 元</p><p class="cc-sub">首月 MOA 折抵</p>
+      <p class="cc-val" style="margin-top:6px">${fmt(r0.net)} 元</p><p class="cc-sub">首月淨支出</p>
+      <p class="cc-val" style="margin-top:6px">${fmt(totalMoa)} 元</p><p class="cc-sub">全期 MOA 總折抵</p>
+      <p class="cc-val" style="margin-top:6px">${fmt(r0.cap)} 元</p><p class="cc-sub">計息存款上限</p>
+    </div>`;
+  }).join('');
+}
+
+function drawChart(){
+  const step=Math.max(1,Math.floor(sched.length/60));
+  const labels=[],ps=[],is=[],ms=[];
+  for(let i=0;i<sched.length;i+=step){
+    const r=sched[i];
+    labels.push('第'+r.period+'期');
+    ps.push(Math.round(r.principal));
+    is.push(Math.round(r.interest));
+    ms.push(-Math.round(r.moa));
+  }
+  if(chartInst) chartInst.destroy();
+  chartInst=new Chart(document.getElementById('chart'),{
+    type:'bar',
+    data:{labels,datasets:[
+      {label:'本金',data:ps,backgroundColor:'#185FA5',stack:'a'},
+      {label:'利息',data:is,backgroundColor:'#D85A30',stack:'a'},
+      {label:'MOA折抵',data:ms,backgroundColor:'#1D9E75',stack:'a'}
+    ]},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+Math.abs(ctx.parsed.y).toLocaleString('zh-TW')+' 元'}}},
+      scales:{
+        x:{stacked:true,ticks:{autoSkip:true,maxTicksLimit:12,font:{size:11}}},
+        y:{stacked:true,ticks:{callback:v=>(v/10000).toFixed(0)+'萬',font:{size:11}}}
+      }
+    }
+  });
+}
+
+function showRows(n,activeId){
+  ['ta','tb','tc'].forEach(id=>document.getElementById(id).classList.remove('active'));
+  document.getElementById(activeId).classList.add('active');
+  const rows=n===9999?sched:sched.slice(0,n);
+  document.getElementById('tbody').innerHTML=rows.map(r=>{
+    const overCap=r.dep>r.cap;
+    return `<tr>
+      <td>${r.period}</td><td>${r.date}</td>
+      <td>${fmt(r.monthly)}</td><td>${fmt(r.principal)}</td><td>${fmt(r.interest)}</td>
+      <td style="${overCap?'color:var(--color-text-warning)':''}">${fmt(r.dep)}</td>
+      <td>${fmt(r.cap)}</td><td>${r.days}</td>
+      <td style="color:var(--color-text-success)">-${fmt(r.moa)}</td>
+      <td style="color:var(--color-text-warning)">${r.nhiFee>0?fmt(r.nhiFee):'-'}</td>
+      <td style="font-weight:500">${fmt(r.net)}</td>
+      <td>${fmt(r.balance)}</td>
+    </tr>`;
+  }).join('');
+}
+
+calculate();
+</script>
